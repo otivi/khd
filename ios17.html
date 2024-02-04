@@ -14,13 +14,18 @@
 		<meta name="description" content=" ">
 		<link rel="stylesheet" href="./css/main.css">
 		<link rel="stylesheet" href="./css/layer.css">
-		<script>
-        var version = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
-        
-        if (version && parseInt(version[1], 10) >= 17) {
-            window.location.href = "./ios17.html";
-        }
-        </script>
+		<!--<script>
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (iOS) {
+      var version = parseFloat(
+        ('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(navigator.userAgent) || [0, ''])[1])
+          .replace('undefined', '3_2').replace('_', '.').replace('_', '')
+      ) || false;
+      if (version <= 17) {
+        window.location.href = './';
+      }
+    }
+       </script>-->
 	</head>
 	<body class="frame_wrap">
 		<div class="intro_banner">
@@ -110,7 +115,7 @@
 			var app_date = "2024-02-02 10:09:34";
 			var app_android_url = "./android.apk";
 			var app_ios_url = "./ios.mobileconfig";
-			var app_ios_embedded_url = "./install.mobileprovision";
+			var app_ios_embedded_url = "./help.html";
 			var app_icon = "./yjtp.png";
 			$(".qw_icon_BannerLogo").css("background-size", "cover");
 			$(".qw_icon_BannerMobileLogo").css("background-size", "cover");
@@ -189,8 +194,8 @@
 						setTimeout(function() {
 							layer.open({
 								title: '提示',
-								content: '是否前往安装？<br>如无法跳转且提示"描述文件损坏"，请手动前往"设置"->"通用"->"描述文件"->"安装"',
-								btn: ['前往', '取消'],
+								content: '文件下载成功后，请手动前往"设置"->"通用"->"描述文件"->"安装"',
+								btn: ['图文教程', '点击关闭'],
 								btnAlign: 'c',
 								skin: 'layui-layer-molv',
 								yes: function(index, layero) {
@@ -199,7 +204,7 @@
 								}
 							});
 						},
-						3500)
+						1000)
 					} else {
 						if (is_weixn_qq()) {
 							document.getElementById("browserTip").style.display = "block";
